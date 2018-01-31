@@ -13,10 +13,13 @@ if sys.version_info < (2, 5):
         "Sorry, you need at least Python 2.5 or \
         Python 3.x to use api-cloudvps-py.")
 
+with open('README.rst') as f:
+    readme = f.read()
+
 
 setup(name='api-cloudvps-py',
-      version='0.0.1',
-      description='Package for working with reg.ru Cloudvps API interface',
+      version='0.1.0',
+      description=readme,
       url='https://github.com/wa-pis/api-cloudvps-py',
       author='Anton Grudin',
       author_email='onepis2word@gmail.com',
@@ -41,4 +44,5 @@ setup(name='api-cloudvps-py',
           'requests',
           'future',
       ],
+      test_suite='tests',
       zip_safe=False)
