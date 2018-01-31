@@ -1,6 +1,6 @@
-.. |PyPI version| image:: https://badge.fury.io/py/api-cloudvps-py.svg
+.. image:: https://badge.fury.io/py/api-cloudvps-py.svg
    :target: https://badge.fury.io/py/api-cloudvps-py
-.. |GitHub version| image:: https://badge.fury.io/gh/wa-pis%2Fapi-cloudvps-py.svg
+.. image:: https://badge.fury.io/gh/wa-pis%2Fapi-cloudvps-py.svg
    :target: https://badge.fury.io/gh/wa-pis%2Fapi-cloudvps-py
 .. image:: https://travis-ci.org/wa-pis/api-cloudvps-py.svg?branch=master
     :target: https://travis-ci.org/wa-pis/api-cloudvps-py
