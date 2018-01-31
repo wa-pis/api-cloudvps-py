@@ -18,8 +18,9 @@ with open('README.rst') as f:
 
 
 setup(name='api-cloudvps-py',
-      version='0.1.1',
-      description=readme,
+      version='0.1.2',
+      description='Basic api client for reg.ru cloudvps',
+      long_description=readme,
       url='https://github.com/wa-pis/api-cloudvps-py',
       author='Anton Grudin',
       author_email='onepis2word@gmail.com',
