@@ -18,7 +18,7 @@ How to obtain token
 ===================
 
 If you want to work with reg.ru cloudvps api client
-`order free service <https://www.reg.ru/vps/cloud>`_
+`order free service <https://www.reg.ru/vps/cloud>`__
 
 More info about reg.ru kvm cloud https://www.reg.ru/vps/cloud
 
