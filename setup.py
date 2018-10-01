@@ -43,7 +43,7 @@ setup(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
     ],
-    keywords="api-client api python requests reg.ru",
+    keywords="api-client api python requests reg.ru kvm cloud",
     install_requires=["requests", "future"],
     test_suite="tests",
     zip_safe=False,
