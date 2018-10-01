@@ -17,7 +17,7 @@ class Api(object):
     actions = None
     vps = None
 
-    def __init__(self, token, provider='api.cloudvps.reg.ru'):
+    def __init__(self, token, provider="api.cloudvps.reg.ru"):
         """
         Init api client
         """
@@ -35,51 +35,39 @@ class Api(object):
         self.vps = objects.vps.Vps(self)
 
     def set_headers(self):
-        self.headers['Authorization'] = "Bearer {0}".format(self.token)
-        self.headers['Content-Type'] = 'application/json'
-        self.headers['Host'] = self.host
-        self.url = 'https://{0}/v1'.format(self.host)
+        self.headers["Authorization"] = "Bearer {0}".format(self.token)
+        self.headers["Content-Type"] = "application/json"
+        self.headers["Host"] = self.host
+        self.url = "https://{0}/v1".format(self.host)
 
     def get(self, path, object_id=None):
         """
         http wrapper for get request
         """
-        data = requests.get(self.url + path,
-                            headers=self.headers)
+        data = requests.get(self.url + path, headers=self.headers)
         return data.json()
 
     def post(self, path, payload):
         """
         http wrapper for post request
         """
-        data = requests.post(self.url + path,
-                             json=payload,
-                             headers=self.headers)
+        data = requests.post(self.url + path, json=payload, headers=self.headers)
         return data.json()
 
     def put(self, path, payload):
         """
         http wrapper for put request
         """
-        data = requests.put(self.url + path,
-                            json=payload,
-                            headers=self.headers)
+        data = requests.put(self.url + path, json=payload, headers=self.headers)
         return data.json()
 
     def delete(self, path):
         """
         http wrapper for delete request
         """
-        data = requests.delete(self.url + path,
-                               headers=self.headers)
+        data = requests.delete(self.url + path, headers=self.headers)
 
         return data.status_code
 
     def get_path(self):
         return self.path
-
-
-__author__ = 'Grudin Anton'
-__version__ = '0.0.1'
-__license__ = 'MIT'
-VERSION = __version__

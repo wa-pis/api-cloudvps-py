@@ -6,7 +6,8 @@ class Snapshots(Cloud):
     """
     Module for snapshot operations
     """
-    path = '/snapshots'
+
+    path = "/snapshots"
 
     def __init__(self, api):
         super(Snapshots, self).__init__(api)
@@ -26,7 +27,7 @@ class Snapshots(Cloud):
         """
         Change name of snapshot
         """
-        payload = {'name': name}
+        payload = {"name": name}
         full_path = "{0}/{1}".format(self.get_path(), id)
 
         data = self.api.put(full_path, payload)

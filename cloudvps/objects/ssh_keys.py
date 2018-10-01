@@ -6,7 +6,8 @@ class SshKeys(Cloud):
     """
     Module for ssh keys storage
     """
-    path = '/account/keys'
+
+    path = "/account/keys"
 
     def __init__(self, api):
         super(SshKeys, self).__init__(api)
@@ -23,8 +24,8 @@ class SshKeys(Cloud):
         require fields: name, public_key
         """
         payload = {}
-        payload['name'] = name
-        payload['public_key'] = public_key
+        payload["name"] = name
+        payload["public_key"] = public_key
 
         data = self.api.post(self.get_path(), payload)
 
@@ -34,7 +35,7 @@ class SshKeys(Cloud):
         """
         Change name of ssh key
         """
-        payload = {'name': name}
+        payload = {"name": name}
         full_path = "{0}/{1}".format(self.get_path(), id)
 
         data = self.api.put(full_path, payload)

@@ -6,7 +6,8 @@ class History(Cloud):
     """
     Module for obtaining operation history
     """
-    path = '/history'
+
+    path = "/history"
 
     def __init__(self, api):
         super(History, self).__init__(api)
