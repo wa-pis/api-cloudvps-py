@@ -7,7 +7,7 @@ class CloudTestCase(unittest.TestCase):
         self.api = cloudvps.Api("some_fake_token")
 
     def testCheckVersion(self):
-        self.assertEqual(cloudvps.__version__, "0.1.5")
+        self.assertEqual(cloudvps.__version__, "0.1.6")
 
     def testHelpfullFunction(self):
         pass
