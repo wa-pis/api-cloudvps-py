@@ -20,7 +20,7 @@ with open("README.rst") as f:
 
 setup(
     name="api-cloudvps-py",
-    version="0.1.4",
+    version="0.1.5",
     description="Basic api client for reg.ru cloudvps",
     long_description=readme,
     url="https://github.com/wa-pis/api-cloudvps-py",
@@ -29,7 +29,7 @@ setup(
     license="MIT",
     packages=["cloudvps", "cloudvps/objects"],
     classifiers=[
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
         "Topic :: Software Development",
         "Topic :: Internet :: WWW/HTTP",
