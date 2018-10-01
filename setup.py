@@ -20,7 +20,7 @@ with open("README.rst") as f:
 
 setup(
     name="api-cloudvps-py",
-    version="0.1.3",
+    version="0.1.4",
     description="Basic api client for reg.ru cloudvps",
     long_description=readme,
     url="https://github.com/wa-pis/api-cloudvps-py",
