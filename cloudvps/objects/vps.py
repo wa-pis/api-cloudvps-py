@@ -6,7 +6,8 @@ class Vps(Cloud):
     """
     Module for work with servers
     """
-    path = '/reglets'
+
+    path = "/reglets"
 
     def __init__(self, api):
         super(Vps, self).__init__(api)
@@ -32,7 +33,7 @@ class Vps(Cloud):
         """
         Generate vnc token
         """
-        payload = {'type': 'generate_vnc_link'}
+        payload = {"type": "generate_vnc_link"}
 
         return self.action(server_id, payload)
 
@@ -40,8 +41,7 @@ class Vps(Cloud):
         """
         Get vnc link
         """
-        full_path = "{0}/{1}/{2}".format(self.get_path(),
-                                         server_id, 'vnc_link')
+        full_path = "{0}/{1}/{2}".format(self.get_path(), server_id, "vnc_link")
         data = self.api.get(full_path)
 
         return data
@@ -51,7 +51,7 @@ class Vps(Cloud):
         Reset server password
         """
 
-        payload = {'type': 'password_reset'}
+        payload = {"type": "password_reset"}
 
         return self.action(server_id, payload)
 
@@ -59,7 +59,7 @@ class Vps(Cloud):
         """
         Reboot server
         """
-        payload = {'type': 'reboot'}
+        payload = {"type": "reboot"}
 
         return self.action(server_id, payload)
 
@@ -67,7 +67,7 @@ class Vps(Cloud):
         """
         Change size of server
         """
-        payload = {'type': 'resize', 'size': size}
+        payload = {"type": "resize", "size": size}
 
         return self.action(server_id, payload)
 
@@ -75,9 +75,9 @@ class Vps(Cloud):
         """
         Create snapshot of server
         """
-        payload = {'type': 'snapshot'}
+        payload = {"type": "snapshot"}
         if name:
-            payload['name'] = name
+            payload["name"] = name
 
         return self.action(server_id, payload)
 
@@ -85,13 +85,13 @@ class Vps(Cloud):
         """
         Reinstall server
         """
-        payload = {'type': 'rebuild', 'image': image}
+        payload = {"type": "rebuild", "image": image}
 
         if type(ssh_keys) is list:
-            payload['ssh_keys'] = ssh_keys
+            payload["ssh_keys"] = ssh_keys
         else:
-            payload['ssh_keys'] = []
-            payload['ssh_keys'].append(ssh_keys)
+            payload["ssh_keys"] = []
+            payload["ssh_keys"].append(ssh_keys)
 
         return self.action(server_id, payload)
 
@@ -102,10 +102,10 @@ class Vps(Cloud):
         optional: ssh_keys - array of id or id
         """
         payload = {}
-        payload['name'] = name
-        payload['size'] = size
-        payload['image'] = image
-        payload['ssh_keys'] = ssh_keys
+        payload["name"] = name
+        payload["size"] = size
+        payload["image"] = image
+        payload["ssh_keys"] = ssh_keys
 
         data = self.api.post(self.get_path(), payload)
 
@@ -115,7 +115,7 @@ class Vps(Cloud):
         """
         Rename server
         """
-        payload = {'name': name}
+        payload = {"name": name}
         full_path = "{0}/{1}".format(self.get_path(), id)
 
         data = self.api.put(full_path, payload)

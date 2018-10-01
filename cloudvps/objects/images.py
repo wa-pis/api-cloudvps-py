@@ -6,7 +6,8 @@ class Images(Cloud):
     """
     Module for working with images
     """
-    path = '/images'
+
+    path = "/images"
 
     def __init__(self, api):
         super(Images, self).__init__(api)
@@ -24,19 +25,19 @@ class Images(Cloud):
         return data
 
     def get_application(self):
-        return self.get('?type=application')
+        return self.get("?type=application")
 
     def get_distribution(self):
-        return self.get('?type=distribution')
+        return self.get("?type=distribution")
 
     def get_private(self):
-        return self.get('?private=true')
+        return self.get("?private=true")
 
     def rename(self, id, name):
         """
         Change name of snapshot
         """
-        payload = {'name': name}
+        payload = {"name": name}
         full_path = "{0}/{1}".format(self.get_path(), id)
 
         data = self.api.put(full_path, payload)

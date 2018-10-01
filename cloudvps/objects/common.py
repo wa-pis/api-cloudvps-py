@@ -13,7 +13,7 @@ class Common(Cloud):
         """
         Get all plans
         """
-        data = self.api.get('/sizes')
+        data = self.api.get("/sizes")
 
         return data
 
@@ -21,7 +21,7 @@ class Common(Cloud):
         """
         Get random name
         """
-        data = self.api.get('/random_reglet_name')
+        data = self.api.get("/random_reglet_name")
 
         return data
 
@@ -29,17 +29,7 @@ class Common(Cloud):
         """
         Get average time of operation
         """
-        data = self.api.get('/estimate')
-
-        return data
-
-    def feedback(self, email, message):
-        """
-        Send feedback
-        """
-        payload = {'user_email': email, 'message': message}
-
-        data = self.api.post('/account/feedback', payload)
+        data = self.api.get("/estimate")
 
         return data
 
@@ -49,6 +39,6 @@ class Common(Cloud):
         """
         payload = {param_name: value}
 
-        data = self.api.post('/validate', payload)
+        data = self.api.post("/validate", payload)
 
         return data

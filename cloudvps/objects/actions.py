@@ -6,7 +6,8 @@ class Actions(Cloud):
     """
     Module for working with tasks for objects
     """
-    path = '/actions'
+
+    path = "/actions"
 
     def __init__(self, api):
         super(Actions, self).__init__(api)
