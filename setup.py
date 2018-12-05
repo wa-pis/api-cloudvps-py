@@ -8,9 +8,9 @@ except ImportError:
     from distutils.core import setup
 
 
-if sys.version_info < (2, 5):
+if sys.version_info < (2, 7):
     raise NotImplementedError(
-        "Sorry, you need at least Python 2.5 or \
+        "Sorry, you need at least Python 2.7 or \
         Python 3.x to use api-cloudvps-py."
     )
 
