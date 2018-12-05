@@ -111,22 +111,31 @@ class Vps(Cloud):
 
         return data
 
-    def rename(self, id, name):
+    def rename(self, server_id, name):
         """
         Rename server
         """
         payload = {"name": name}
-        full_path = "{0}/{1}".format(self.get_path(), id)
+        full_path = "{0}/{1}".format(self.get_path(), server_id)
 
         data = self.api.put(full_path, payload)
 
         return data
 
-    def delete(self, id):
+    def delete(self, server_id):
         """
         Delete server
         """
-        full_path = "{0}/{1}".format(self.get_path(), id)
+        full_path = "{0}/{1}".format(self.get_path(), server_id)
         data = self.api.delete(full_path)
 
         return data
+
+    def ptr(self, server_id, ptr):
+        """
+        Set ptr for ip of the server
+        """
+        payload = {"ptr": ptr}
+        full_path = "{0}/{1}/change_ptr".format(self.get_path(), server_id)
+
+        return self.api.post(full_path, payload)
