@@ -115,8 +115,7 @@
 ## 12. Release and OpenSpec completion
 
 - [ ] 12.1 Build `0.2.0` release artifacts from the intended tag commit and compare hashes with the workflow artifact.
-- [ ] 12.2 Publish and install a TestPyPI release candidate, run import/read-only smoke checks, and resolve packaging defects.
-- [ ] 12.3 Publish the protected GitHub Release and approve the production environment deployment.
-- [ ] 12.4 Verify PyPI wheel/sdist metadata, Trusted Publishing identity, attestations, hashes, and clean-environment installation.
-- [ ] 12.5 Run post-release read-only CloudVPS smoke tests and verify all documentation/release links.
-- [ ] 12.6 Sync the seven delta capability specs into `openspec/specs/`, archive the completed change, and retain the implementation/test/release evidence in the change history.
+- [ ] 12.2 Publish the protected GitHub Release and approve the production environment deployment.
+- [ ] 12.3 Verify PyPI wheel/sdist metadata, Trusted Publishing identity, attestations, hashes, and clean-environment installation.
+- [ ] 12.4 Run post-release read-only CloudVPS smoke tests and verify all documentation/release links.
+- [ ] 12.5 Sync the seven delta capability specs into `openspec/specs/`, archive the completed change, and retain the implementation/test/release evidence in the change history.
