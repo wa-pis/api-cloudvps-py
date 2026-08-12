@@ -8,8 +8,9 @@
    `api-cloudvps-py`, workflow `release.yml`, and environment `pypi`.
 4. Ensure the `pypi` environment permits only `v*` tags and has the available
    required-review/no-bypass protection. Confirm branch/tag rules and CI.
-5. Test with TestPyPI from the exact candidate artifacts and install the wheel in
-   a clean environment. Do not reuse the TestPyPI build for a different version.
+5. Run the manual `testpypi.yml` workflow from `master`; it builds, publishes
+   through the `testpypi` Trusted Publisher, and installs the candidate in a clean
+   environment. Do not reuse the TestPyPI build for a different version.
 6. Create tag `vX.Y.Z` at the reviewed commit and publish the matching GitHub
    Release. Approve the `pypi` environment deployment after reviewing the build.
 7. On PyPI, verify wheel/sdist, SHA-256 hashes, repository provenance, Trusted
