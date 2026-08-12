@@ -1,73 +1,136 @@
-from builtins import object
+import warnings
+from urllib.parse import urlsplit
+
 import requests
-from . import objects
+
+from . import resources
 
 
-class Api(object):
-    token = None
-    provider = None
-    host = None
-    headers = {}
-    url = None
+class CloudVpsAPIError(RuntimeError):
+    """An HTTP error returned by the REG.Cloud CloudVPS API."""
 
-    ssh = None
-    common = None
-    snapshots = None
-    images = None
-    actions = None
-    vps = None
+    def __init__(self, status_code, code=None, message=None, response_text=None):
+        self.status_code = status_code
+        self.code = code
+        self.message = message
+        self.response_text = response_text
+        detail = message or response_text or "CloudVPS API request failed"
+        prefix = f"CloudVPS API error {status_code}"
+        if code:
+            prefix += f" ({code})"
+        super().__init__(f"{prefix}: {detail}")
 
-    def __init__(self, token, provider="api.cloudvps.reg.ru"):
-        """
-        Init api client
-        """
+
+class Api:
+    """Synchronous client for REG.Cloud CloudVPS API v1 and v2."""
+
+    def __init__(
+        self,
+        token,
+        provider=None,
+        *,
+        base_url="https://api.cloudvps.reg.ru",
+        timeout=30,
+        session=None,
+    ):
+        if provider is not None:
+            warnings.warn(
+                "provider= is deprecated; use base_url='https://host' instead",
+                DeprecationWarning,
+                stacklevel=2,
+            )
+            base_url = provider if "://" in provider else f"https://{provider}"
+
+        parsed = urlsplit(base_url)
+        if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+            raise ValueError("base_url must be an absolute HTTP(S) URL")
+        if not token:
+            raise ValueError("token must not be empty")
+
         self.token = token
-        self.host = provider
-        self.set_headers()
+        self.base_url = base_url.rstrip("/")
+        self.timeout = timeout
+        self.session = session or requests.Session()
+        self._owns_session = session is None
+        self.headers = {
+            "Authorization": f"Bearer {token}",
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "User-Agent": f"api-cloudvps-py/{resources.package_version()}",
+        }
 
-        # initial main objects
-        self.ssh = objects.ssh_keys.SshKeys(self)
-        self.common = objects.common.Common(self)
-        self.history = objects.history.History(self)
-        self.snapshots = objects.snapshots.Snapshots(self)
-        self.images = objects.images.Images(self)
-        self.actions = objects.actions.Actions(self)
-        self.vps = objects.vps.Vps(self)
+        self.v1 = resources.V1(self)
+        self.v2 = resources.V2(self)
 
-    def set_headers(self):
-        self.headers["Authorization"] = "Bearer {0}".format(self.token)
-        self.headers["Content-Type"] = "application/json"
-        self.headers["Host"] = self.host
-        self.url = "https://{0}/v1".format(self.host)
+        # 0.1.x compatibility aliases. All current endpoints are API v1.
+        self.ssh = self.v1.ssh_keys
+        self.common = self.v1.common
+        self.history = self.v1.history
+        self.snapshots = self.v1.snapshots
+        self.images = self.v1.images
+        self.actions = self.v1.actions
+        self.vps = self.v1.servers
 
+    def _redact(self, value):
+        return str(value).replace(self.token, "***") if value is not None else None
+
+    def request(self, method, path, *, version="v1", params=None, json=None):
+        """Send a versioned request and return decoded provider data."""
+        url = f"{self.base_url}/{version}/{path.lstrip('/')}"
+        response = self.session.request(
+            method,
+            url,
+            headers=dict(self.headers),
+            params=params or None,
+            json=json,
+            timeout=self.timeout,
+        )
+        if not 200 <= response.status_code < 300:
+            try:
+                payload = response.json()
+            except (TypeError, ValueError):
+                payload = {}
+            code = payload.get("code") if isinstance(payload, dict) else None
+            message = payload.get("message") if isinstance(payload, dict) else None
+            text = self._redact(getattr(response, "text", ""))[:500]
+            raise CloudVpsAPIError(
+                response.status_code,
+                self._redact(code),
+                self._redact(message),
+                text,
+            )
+        if response.status_code == 204 or not getattr(response, "content", b""):
+            return None
+        try:
+            return response.json()
+        except (TypeError, ValueError):
+            return response.text
+
+    # Low-level 0.1.x helpers remain v1-only.
     def get(self, path, object_id=None):
-        """
-        http wrapper for get request
-        """
-        data = requests.get(self.url + path, headers=self.headers)
-        return data.json()
+        del object_id
+        return self.request("GET", path)
 
     def post(self, path, payload):
-        """
-        http wrapper for post request
-        """
-        data = requests.post(self.url + path, json=payload, headers=self.headers)
-        return data.json()
+        return self.request("POST", path, json=payload)
 
     def put(self, path, payload):
-        """
-        http wrapper for put request
-        """
-        data = requests.put(self.url + path, json=payload, headers=self.headers)
-        return data.json()
+        return self.request("PUT", path, json=payload)
 
     def delete(self, path):
-        """
-        http wrapper for delete request
-        """
-        data = requests.delete(self.url + path, headers=self.headers)
+        return self.request("DELETE", path)
 
-        return data.status_code
+    def close(self):
+        """Close the internally created session.
 
-    def get_path(self):
-        return self.path
+        A caller-supplied session remains owned by the caller and is not closed.
+        """
+        if self._owns_session:
+            self.session.close()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.close()
+        return False

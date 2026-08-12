@@ -1,0 +1,41 @@
+schema: spec-driven
+
+context: |
+  api-cloudvps-py is an existing synchronous Python client for the REG.Cloud
+  CloudVPS REST API. The published package name is api-cloudvps-py and the
+  public import namespace is cloudvps. Version 0.1.7 was released in 2018.
+  The modernization target is a backwards-aware 0.2.0 release supporting
+  Python 3.11 through 3.14. The live REG.Cloud OpenAPI v1 and v2 documents are
+  the authoritative endpoint contracts. Public methods return decoded Python
+  dictionaries/lists rather than generated models. Runtime dependencies must
+  stay minimal; requests is the HTTP dependency.
+
+rules:
+  proposal:
+    - State the public compatibility and migration impact.
+    - Define scope against the live REG.Cloud CloudVPS OpenAPI contracts.
+    - Include security, rollout, and rollback considerations.
+  specs:
+    - Describe externally observable behavior, not internal class layouts.
+    - Use SHALL or MUST for normative requirements.
+    - Give every requirement at least one testable GIVEN/WHEN/THEN scenario.
+    - Cover error and security behavior at trust boundaries.
+  design:
+    - Prefer the standard library and the existing requests dependency.
+    - Preserve the cloudvps import namespace and raw dictionary responses.
+    - Do not introduce async APIs, generated models, or OpenAPI code generation.
+    - Separate build permissions from PyPI publishing permissions.
+  tasks:
+    - Keep tasks ordered, independently verifiable, and small enough to review.
+    - Include tests and documentation with the behavior they validate.
+
+operations:
+  apply:
+    guidance:
+      - Implement tasks in order and mark them complete only after their checks pass.
+      - Never run mutating live CloudVPS API calls in automated tests.
+      - Preserve unrelated user changes in the working tree.
+  archive:
+    guidance:
+      - Archive only after all tasks and release-readiness checks are complete.
+      - Merge every delta capability into the main OpenSpec specifications.

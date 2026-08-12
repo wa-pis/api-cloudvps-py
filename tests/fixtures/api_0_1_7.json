@@ -1,0 +1,27 @@
+{
+  "constructor": "Api(token, provider='api.cloudvps.reg.ru')",
+  "low_level_methods": ["get", "post", "put", "delete"],
+  "resources": {
+    "ssh": ["list", "create", "rename", "delete"],
+    "common": ["sizes", "get_new_name", "estimate", "validate"],
+    "history": ["list", "get"],
+    "snapshots": ["list", "get", "rename", "delete"],
+    "images": ["list", "get", "get_application", "get_distribution", "get_private", "rename", "delete"],
+    "actions": ["list", "get"],
+    "vps": ["list", "action", "request_vnc", "get_vnc", "password_reset", "reboot", "resize", "snapshot", "rebuild", "create", "rename", "delete", "ptr"]
+  },
+  "return_behavior": {
+    "get_post_put": "decoded provider JSON regardless of HTTP status",
+    "delete": "HTTP status integer"
+  },
+  "undocumented_endpoints": [
+    "GET /actions",
+    "GET /estimate",
+    "POST /validate",
+    "GET /history/{id}",
+    "GET|PUT|DELETE /images/{id}",
+    "GET|PUT /snapshots/{id}",
+    "GET /reglets/{id}/vnc_link",
+    "POST /reglets/{id}/change_ptr"
+  ]
+}

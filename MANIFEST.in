@@ -1,0 +1,5 @@
+include CHANGELOG.md
+include CONTRIBUTING.rst
+include SECURITY.md
+recursive-include docs *.md *.rst
+recursive-include openspec *.md *.yaml
