@@ -54,5 +54,19 @@ confirmed:
 cloudvps.api.Api
 ```
 
-The post-release authenticated CloudVPS smoke test and final OpenSpec archival
-remain tracked by tasks 12.4 and 12.5.
+## Post-release API and link verification
+
+The authenticated read-only suite passed against the production CloudVPS API
+after the PyPI release. It exercised 15 v1/v2 account and catalog operations:
+
+```text
+balance, billing_history, history, images_v1, images_v2, ips, plans_v2,
+prices, random_name, removed_servers, servers, sizes, snapshots, ssh_keys, vpcs
+```
+
+No full-integration flag was enabled and no resource was created, changed, or
+deleted. All public documentation, API, Terraform, GitHub Release, workflow,
+PyPI release, and Integrity API links were also checked successfully.
+
+The seven capability specs were synced to `openspec/specs/` before this change
+was archived.
