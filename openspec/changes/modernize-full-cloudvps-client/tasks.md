@@ -86,7 +86,7 @@
 - [x] 9.6 Add Dependabot configuration for Python packaging inputs and GitHub Actions.
 - [x] 9.7 Add an opt-in live integration suite using environment-only credentials and a separate full-mutating mode.
 - [x] 9.8 Implement live-test resource tracking and best-effort cleanup so all created identifiers and cleanup outcomes are reported even after a failure.
-- [ ] 9.9 Run the read-only live smoke suite against v1 and v2 with a supplied token and record redacted results.
+- [x] 9.9 Run the read-only live smoke suite against v1 and v2 with a supplied token and record redacted results (2026-08-12: all 15 checks passed; no credential or account data recorded).
 - [ ] 9.10 Run the authorized full live lifecycle suite with minimum temporary resources, verify every feasible mutating operation, clean up, and record costs/results without exposing the token.
 
 ## 10. User and maintainer documentation
