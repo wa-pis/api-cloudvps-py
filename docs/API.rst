@@ -60,6 +60,10 @@ Client method                    HTTP    Provider path
 ``vpcs.detach(id, resource_id)`` DELETE  ``/v1/vpcs/{id}/members/{resource_id}``
 ===============================  ======  =================================================
 
+CloudVPS currently documents ``DELETE /v1/vpcs/{id}`` but responds with HTTP
+501 Not Implemented. ``vpcs.delete(id)`` exposes that response as
+``CloudVpsAPIError``; callers must not assume the network was removed.
+
 Parameters and return values
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

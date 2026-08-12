@@ -202,7 +202,7 @@ image identifier. Snapshot creation SHALL use the documented server action.
 - **WHEN** snapshot creation is invoked
 - **THEN** the client sends the `snapshot` action to the documented server action endpoint
 
-### Requirement: Complete V1 private network lifecycle
+### Requirement: Documented V1 private network surface
 
 The v1 client SHALL support VPC list, create, get, rename, delete, member list,
 member attach, and member detach operations even when a documented provider

@@ -92,7 +92,8 @@ cost. Inspect their responses and remove temporary resources promptly:
 
    # After the provider actions finish:
    api.v1.vpcs.detach(vpc_id, server_id)
-   api.v1.vpcs.delete(vpc_id)
+
+   # CloudVPS currently keeps private networks: vpcs.delete() returns HTTP 501.
 
 Errors
 ------
