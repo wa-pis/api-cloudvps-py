@@ -108,7 +108,7 @@
 - [x] 11.3 Pin checkout, Python setup, artifact transfer, and PyPA publish Actions to reviewed full commit SHAs with release-tag comments.
 - [x] 11.4 Configure the GitHub `pypi` environment with release-tag restrictions, required review appropriate to available maintainers, and no-bypass protection where available.
 - [x] 11.5 Register PyPI Trusted Publisher for the exact owner/repository, `release.yml`, and `pypi` environment.
-- [ ] 11.6 Enable default-branch and `v*` tag rulesets: pull requests, required CI, force-push/delete prevention, and protected release-workflow ownership.
+- [x] 11.6 Enable default-branch and `v*` tag rulesets: pull requests, required CI, force-push/delete prevention, and protected release-workflow ownership.
 - [x] 11.7 Restrict allowed Actions, require full-SHA pins in repository settings, and enable secret scanning/push protection and dependency alerts where available.
 - [x] 11.8 Confirm PyPI maintainer 2FA and recovery access, inventory existing publishers/tokens, and revoke legacy upload tokens after OIDC publication succeeds.
 
