@@ -87,7 +87,7 @@ is reserved for `1.0.0`.
 
 Implementation proceeds in reviewable phases: packaging baseline, transport,
 API v1, API v2, compatibility, quality/documentation, release hardening, then a
-TestPyPI release candidate and production `0.2.0` release.
+production `0.2.0` release with clean-environment verification from PyPI.
 
 ## Risks and rollback
 

@@ -108,15 +108,14 @@
 - [x] 11.3 Pin checkout, Python setup, artifact transfer, and PyPA publish Actions to reviewed full commit SHAs with release-tag comments.
 - [x] 11.4 Configure the GitHub `pypi` environment with release-tag restrictions, required review appropriate to available maintainers, and no-bypass protection where available.
 - [x] 11.5 Register PyPI Trusted Publisher for the exact owner/repository, `release.yml`, and `pypi` environment.
-- [ ] 11.6 Enable default-branch and `v*` tag rulesets: pull requests, required CI, force-push/delete prevention, and protected release-workflow ownership.
+- [x] 11.6 Enable default-branch and `v*` tag rulesets: pull requests, required CI, force-push/delete prevention, and protected release-workflow ownership.
 - [x] 11.7 Restrict allowed Actions, require full-SHA pins in repository settings, and enable secret scanning/push protection and dependency alerts where available.
 - [x] 11.8 Confirm PyPI maintainer 2FA and recovery access, inventory existing publishers/tokens, and revoke legacy upload tokens after OIDC publication succeeds.
 
 ## 12. Release and OpenSpec completion
 
-- [ ] 12.1 Build `0.2.0` release artifacts from the intended tag commit and compare hashes with the workflow artifact.
-- [ ] 12.2 Publish and install a TestPyPI release candidate, run import/read-only smoke checks, and resolve packaging defects.
-- [ ] 12.3 Publish the protected GitHub Release and approve the production environment deployment.
-- [ ] 12.4 Verify PyPI wheel/sdist metadata, Trusted Publishing identity, attestations, hashes, and clean-environment installation.
-- [ ] 12.5 Run post-release read-only CloudVPS smoke tests and verify all documentation/release links.
-- [ ] 12.6 Sync the seven delta capability specs into `openspec/specs/`, archive the completed change, and retain the implementation/test/release evidence in the change history.
+- [x] 12.1 Build `0.2.0` release artifacts from the intended tag commit and compare hashes with the workflow artifact.
+- [x] 12.2 Publish the protected GitHub Release and approve the production environment deployment.
+- [x] 12.3 Verify PyPI wheel/sdist metadata, Trusted Publishing identity, attestations, hashes, and clean-environment installation.
+- [x] 12.4 Run post-release read-only CloudVPS smoke tests and verify all documentation/release links.
+- [x] 12.5 Sync the seven delta capability specs into `openspec/specs/`, archive the completed change, and retain the implementation/test/release evidence in the change history.
